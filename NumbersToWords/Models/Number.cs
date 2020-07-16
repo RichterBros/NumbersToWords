@@ -40,7 +40,8 @@ namespace NumbersToWords.Models
         {60, "sixty"},
         {70, "seventy"},
         {80, "eighty"},
-        {90, "ninety"}
+        {90, "ninety"},
+        {100, "hundred"}
       };
 
       List<string> outputList = new List<string> {};
@@ -55,8 +56,19 @@ namespace NumbersToWords.Models
             highestValue = entry.Key;
           }
         }
-        outputList.Add(numberToWordConverter[highestValue]);
-        currentNumber -= highestValue;
+        if (highestValue >= 100)
+        {
+          decimal val = currentNumber / highestValue;
+          int multiple = (int)Math.Floor(val);
+          outputList.Add(numberToWordConverter[multiple]);
+          outputList.Add(numberToWordConverter[highestValue]);
+          currentNumber -= multiple * highestValue;
+        }
+        else 
+        {
+          outputList.Add(numberToWordConverter[highestValue]);
+          currentNumber -= highestValue;
+        }
       }
       string output = String.Join(" ", outputList);
       return output;
