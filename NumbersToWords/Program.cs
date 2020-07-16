@@ -7,7 +7,9 @@ namespace Template {
   {
     public static void Main()
     {
-
+      Console.WriteLine("Enter a number!");
+      string userInput = Console.ReadLine();
+      Console.WriteLine(Number.NumberToWords(long.Parse(userInput)));
     }
   }
 }
