@@ -5,15 +5,15 @@ namespace NumbersToWords.Models
 {
   public class Number
   {
-    public int UserNumber { get; }
-    public Number(int inputNumber)
+    public long UserNumber { get; }
+    public Number(long inputNumber)
     {
       UserNumber = inputNumber;
     }
 
-    public string NumberToWords()
+    public static string NumberToWords(long inputNumber)
     {
-      Dictionary<int, string> numberToWordConverter = new Dictionary<int, string>() {
+      Dictionary<long, string> numberToWordConverter = new Dictionary<long, string>() {
         {1, "one"},
         {2, "two"},
         {3, "three"},
@@ -41,15 +41,19 @@ namespace NumbersToWords.Models
         {70, "seventy"},
         {80, "eighty"},
         {90, "ninety"},
-        {100, "hundred"}
+        {100, "hundred"},
+        {1000, "thousand"},
+        {1000000, "million"},
+        {1000000000, "billion"},
+        {1000000000000, "trillion"},
       };
 
       List<string> outputList = new List<string> {};
-      int currentNumber = UserNumber;
+      long currentNumber = inputNumber;
       while (currentNumber > 0)
       {
-        int highestValue = 0;
-        foreach(KeyValuePair<int, string> entry in numberToWordConverter)
+        long highestValue = 0;
+        foreach(KeyValuePair<long, string> entry in numberToWordConverter)
         {
           if (entry.Key <= currentNumber)
           {
@@ -59,8 +63,8 @@ namespace NumbersToWords.Models
         if (highestValue >= 100)
         {
           decimal val = currentNumber / highestValue;
-          int multiple = (int)Math.Floor(val);
-          outputList.Add(numberToWordConverter[multiple]);
+          long multiple = (long)Math.Floor(val);
+          outputList.Add(Number.NumberToWords(multiple));
           outputList.Add(numberToWordConverter[highestValue]);
           currentNumber -= multiple * highestValue;
         }
