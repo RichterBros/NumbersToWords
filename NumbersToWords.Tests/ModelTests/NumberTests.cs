@@ -35,10 +35,19 @@ namespace NumbersToWords.Tests
     }
 
     [TestMethod]
-    public void NumberToWords_ReturnsWordsForNumberGreaterThan20LessThan99_String()
+    public void NumberToWords_ReturnsWordsForNumberGreaterThan20LessThan100_String()
     {
       string testString = "fifty four";
       Number newNumber = new Number(54);
+      string resultString = newNumber.NumberToWords();
+      Assert.AreEqual(testString, resultString);
+    }
+
+    [TestMethod]
+    public void NumberToWords_ReturnsWordsForNumberGreaterThan99LessThan1000_String()
+    {
+      string testString = "five hundred fifty four";
+      Number newNumber = new Number(554);
       string resultString = newNumber.NumberToWords();
       Assert.AreEqual(testString, resultString);
     }
