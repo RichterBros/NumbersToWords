@@ -12,7 +12,7 @@ namespace NumbersToWords.Tests
     [TestMethod]
     public void NumberConstructor_CreatesInstanceOfNumber_Number()
     {
-      Number newNumber = new Number();
+      Number newNumber = new Number(10);
       Assert.AreEqual(typeof(Number), newNumber.GetType());
     }
 
