@@ -16,5 +16,14 @@ namespace NumbersToWords.Tests
       Assert.AreEqual(typeof(Number), newNumber.GetType());
     }
 
+    [TestMethod]
+    public void GetNumber_ReturnsNumber_Int()
+    {
+      int testNumber = 10;
+      Number newNumber = new Number(10);
+      int resultNumber = newNumber.UserNumber;
+      Assert.AreEqual(testNumber, resultNumber);
+    }
+
   }
 }
