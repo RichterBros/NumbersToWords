@@ -34,8 +34,32 @@ namespace NumbersToWords.Models
         {18, "eighteen"},
         {19, "nineteen"},
         {20, "twenty"},
+        {30, "thirty"},
+        {40, "fourty"},
+        {50, "fifty"},
+        {60, "sixty"},
+        {70, "seventy"},
+        {80, "eighty"},
+        {90, "ninety"}
       };
-      return numberToWordConverter[UserNumber];
+
+      List<string> outputList = new List<string> {};
+      int currentNumber = UserNumber;
+      while (currentNumber > 0)
+      {
+        int highestValue = 0;
+        foreach(KeyValuePair<int, string> entry in numberToWordConverter)
+        {
+          if (entry.Key <= currentNumber)
+          {
+            highestValue = entry.Key;
+          }
+        }
+        outputList.Add(numberToWordConverter[highestValue]);
+        currentNumber -= highestValue;
+      }
+      string output = String.Join(" ", outputList);
+      return output;
     }
   }
 }
